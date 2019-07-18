@@ -36,7 +36,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarButtonsEnabled(false)
+        shareButton.isEnabled = false
+        cancelButton.isEnabled = true
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setTextFieldAttributes(topTextField)
         setTextFieldAttributes(bottomTextField)
@@ -87,6 +88,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         navBarButtonsEnabled(false)
+        dismiss(animated: true, completion: nil)
     }
     
     func navBarButtonsEnabled(_ status: Bool) {
