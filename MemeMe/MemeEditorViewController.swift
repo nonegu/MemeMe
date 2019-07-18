@@ -101,7 +101,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
         // apple suggests that imagepickers that uses library, should be presented as popovers
         imagePicker.modalPresentationStyle = .popover
         // defining the popover
@@ -117,18 +116,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info[.editedImage] as? UIImage {
-            pickedImageView.image = editedImage
+        if let originalImage = info[.originalImage] as? UIImage {
+            pickedImageView.image = originalImage
         }
         
         dismiss(animated: true) {
             self.navBarButtonsEnabled(true)
+            self.pickedImageView.isUserInteractionEnabled = true
+            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(sender:)))
+            self.pickedImageView.addGestureRecognizer(pinchGesture)
         }
     }
     
@@ -159,6 +160,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         hideNavigationControllers(false)
         
         return memedImage
+    }
+    
+    // MARK: Gesture method to zoom in & out image
+    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
+        sender.view?.transform = (sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale))!
+        sender.scale = 1.0
     }
     
     func hideNavigationControllers(_ status: Bool) {
