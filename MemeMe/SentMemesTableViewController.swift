@@ -17,6 +17,11 @@ class SentMemesTableViewController: UITableViewController  {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        tableView.reloadData()
+    }
+    
     // MARK: TableView Delegate and DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -25,7 +30,7 @@ class SentMemesTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
         cell.imageView?.image = appDelegate.memes[indexPath.row].memedImage
         let text = "\(appDelegate.memes[indexPath.row].topText)...\(appDelegate.memes[indexPath.row].bottomText)"
         cell.textLabel?.text = text
