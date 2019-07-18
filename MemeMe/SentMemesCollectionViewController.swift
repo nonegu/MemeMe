@@ -10,16 +10,27 @@ import UIKit
 
 class SentMemesCollectionViewController: UICollectionViewController {
     
+    // MARK: Properties
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    // MARK: Lifetime Methods
     override func viewDidLoad() {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        collectionView.reloadData()
+    }
+    
+    // MARK: CollectionView Methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return appDelegate.memes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! MemeCollectionViewCell
+        cell.memeImageView.image = appDelegate.memes[indexPath.row].memedImage
         return cell
     }
     
