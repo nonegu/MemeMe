@@ -102,9 +102,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="VcS-9c-OOr" kind="show" identifier="detailTableView" id="MPn-BJ-RGX"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qD9-p9-9Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,9 +209,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="VcS-9c-OOr" kind="show" identifier="detailCollectionView" id="ap2-PR-ANs"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwI-jt-3C0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -331,24 +325,37 @@
             </objects>
             <point key="canvasLocation" x="966" y="-236"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Meme Detail View Controller-->
         <scene sceneID="Pr6-mK-kNe">
             <objects>
-                <viewController id="VcS-9c-OOr" customClass="DetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" id="VcS-9c-OOr" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gbl-ax-9TK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9tE-h9-Cud">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9tE-h9-Cud" firstAttribute="trailing" secondItem="HAr-da-h1K" secondAttribute="trailing" id="66r-UD-pVS"/>
+                            <constraint firstItem="9tE-h9-Cud" firstAttribute="top" secondItem="HAr-da-h1K" secondAttribute="top" id="UNU-cO-DSH"/>
+                            <constraint firstItem="9tE-h9-Cud" firstAttribute="leading" secondItem="HAr-da-h1K" secondAttribute="leading" id="g3K-45-Aj6"/>
+                            <constraint firstAttribute="bottom" secondItem="9tE-h9-Cud" secondAttribute="bottom" id="n1g-Yn-jUq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HAr-da-h1K"/>
                     </view>
+                    <connections>
+                        <outlet property="memedImageView" destination="9tE-h9-Cud" id="F0D-A5-rdL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="een-h6-yNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="-236"/>
+            <point key="canvasLocation" x="1799" y="-236"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MPn-BJ-RGX"/>
         <segue reference="i31-Eh-Goc"/>
     </inferredMetricsTieBreakers>
 </document>
