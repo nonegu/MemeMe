@@ -12,6 +12,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let memeTextAttributes: [NSAttributedString.Key : Any] = [
+        NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 12)!,
+        NSAttributedString.Key.foregroundColor : UIColor.white,
+        NSAttributedString.Key.strokeColor : UIColor.black,
+        NSAttributedString.Key.strokeWidth : -3.0
+    ]
     
     // MARK: Lifetime Methods
     override func viewDidLoad() {
@@ -30,7 +36,13 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! MemeCollectionViewCell
-        cell.memeImageView.image = appDelegate.memes[indexPath.row].memedImage
+        cell.memeImageView.image = appDelegate.memes[indexPath.row].originalImage
+        let topText = appDelegate.memes[indexPath.row].topText
+        let attributedTopText = NSAttributedString(string: topText, attributes: memeTextAttributes)
+        cell.memeTopText.attributedText = attributedTopText
+        let bottomText = appDelegate.memes[indexPath.row].bottomText
+        let attributedBottomText = NSAttributedString(string: bottomText, attributes: memeTextAttributes)
+        cell.memeBottomText.attributedText = attributedBottomText
         return cell
     }
     
