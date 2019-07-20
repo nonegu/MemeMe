@@ -60,7 +60,8 @@ class SentMemesTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
+            appDelegate.memes.remove(at: indexPath.row)
+            tableView.reloadData()
         }
         
     }
