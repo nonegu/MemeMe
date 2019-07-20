@@ -16,6 +16,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
     
@@ -36,8 +37,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shareButton.isEnabled = false
-        cancelButton.isEnabled = true
+        navBarButtonsEnabled(false)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setTextFieldAttributes(topTextField)
         setTextFieldAttributes(bottomTextField)
@@ -84,16 +84,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshPressed(_ sender: Any) {
         pickedImageView.image = nil
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         navBarButtonsEnabled(false)
-        dismiss(animated: true, completion: nil)
     }
     
     func navBarButtonsEnabled(_ status: Bool) {
         shareButton.isEnabled = status
-        cancelButton.isEnabled = status
+        refreshButton.isEnabled = status
     }
     
     // MARK: Image Picking Methods

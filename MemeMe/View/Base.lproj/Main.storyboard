@@ -213,11 +213,18 @@
                                                 <action selector="sharePressed:" destination="BYZ-38-t0r" id="h2h-i0-QlL"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="bqP-Cg-PtN">
-                                            <connections>
-                                                <action selector="cancelPressed:" destination="BYZ-38-t0r" id="DKI-5N-ZYC"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Cancel" id="bqP-Cg-PtN">
+                                                <connections>
+                                                    <action selector="cancelPressed:" destination="BYZ-38-t0r" id="DKI-5N-ZYC"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="refresh" id="IMq-Eb-doh">
+                                                <connections>
+                                                    <action selector="refreshPressed:" destination="BYZ-38-t0r" id="8D3-xC-0Mx"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -249,6 +256,7 @@
                         <outlet property="cancelButton" destination="bqP-Cg-PtN" id="63V-08-DqH"/>
                         <outlet property="navbar" destination="fub-Mc-CYy" id="jUj-7p-MiE"/>
                         <outlet property="pickedImageView" destination="xqX-fK-J0C" id="mpb-7t-mvI"/>
+                        <outlet property="refreshButton" destination="IMq-Eb-doh" id="UDV-52-na4"/>
                         <outlet property="shareButton" destination="n1z-MS-HaK" id="Bx6-B3-jzL"/>
                         <outlet property="toolbar" destination="Ew4-jF-Ca1" id="bYc-KO-RcH"/>
                         <outlet property="topTextField" destination="2fM-iv-odV" id="jgK-FP-Jvp"/>
