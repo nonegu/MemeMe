@@ -18,7 +18,8 @@ class SentMemesTableViewController: UITableViewController  {
         NSAttributedString.Key.strokeColor : UIColor.black,
         NSAttributedString.Key.strokeWidth : -3.0
     ]
-
+    
+    #warning("solve the separator view appearance")
     override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
@@ -46,7 +47,6 @@ class SentMemesTableViewController: UITableViewController  {
         let bottomText = appDelegate.memes[indexPath.row].bottomText
         let attributedBottomText = NSAttributedString(string: bottomText, attributes: memeTextAttributes)
         cell.memeBottomText.attributedText = attributedBottomText
-        cell.separatorInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         return cell
     }
     
