@@ -67,6 +67,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="VcS-9c-OOr" kind="show" identifier="detailTableView" id="MPn-BJ-RGX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qD9-p9-9Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,6 +154,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="VcS-9c-OOr" kind="show" identifier="detailCollectionView" id="ap2-PR-ANs"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwI-jt-3C0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,10 +270,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="-317"/>
+            <point key="canvasLocation" x="966" y="-236"/>
+        </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="Pr6-mK-kNe">
+            <objects>
+                <viewController id="VcS-9c-OOr" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gbl-ax-9TK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="HAr-da-h1K"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="een-h6-yNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="-236"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="MPn-BJ-RGX"/>
         <segue reference="OHR-Wn-1O2"/>
     </inferredMetricsTieBreakers>
 </document>
