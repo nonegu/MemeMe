@@ -15,4 +15,8 @@ class MemeTableViewCell: UITableViewCell {
     @IBOutlet weak var memeTopText: UILabel!
     @IBOutlet weak var memeBottomText: UILabel!
     
+    override var editingStyle: UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
 }
