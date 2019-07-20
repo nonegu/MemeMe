@@ -12,9 +12,15 @@ class SentMemesTableViewController: UITableViewController  {
     
     // MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let memeTextAttributes: [NSAttributedString.Key : Any] = [
+        NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 12)!,
+        NSAttributedString.Key.foregroundColor : UIColor.white,
+        NSAttributedString.Key.strokeColor : UIColor.black,
+        NSAttributedString.Key.strokeWidth : -3.0
+    ]
 
     override func viewDidLoad() {
-        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,11 +36,22 @@ class SentMemesTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
-        cell.imageView?.image = appDelegate.memes[indexPath.row].memedImage
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! MemeTableViewCell
+        cell.memeImageView.image = appDelegate.memes[indexPath.row].originalImage
         let text = "\(appDelegate.memes[indexPath.row].topText)...\(appDelegate.memes[indexPath.row].bottomText)"
-        cell.textLabel?.text = text
+        cell.memeText.text = text
+        let topText = appDelegate.memes[indexPath.row].topText
+        let attributedTopText = NSAttributedString(string: topText, attributes: memeTextAttributes)
+        cell.memeTopText.attributedText = attributedTopText
+        let bottomText = appDelegate.memes[indexPath.row].bottomText
+        let attributedBottomText = NSAttributedString(string: bottomText, attributes: memeTextAttributes)
+        cell.memeBottomText.attributedText = attributedBottomText
+        cell.separatorInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
 }
