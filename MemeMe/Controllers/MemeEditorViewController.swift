@@ -93,7 +93,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                     ac.addAction(UIAlertAction(title: "OK", style: .default))
                     self.present(ac, animated: true)
                 }
-                activityController.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             } else if error != nil {
                 print(error!.localizedDescription)
             }
