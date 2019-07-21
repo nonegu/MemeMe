@@ -21,6 +21,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var navbar: UINavigationBar!
     
     var memeToEdit: Meme?
+    var itemToEdit: Int?
     
     // MARK: Properties
     let memeTextAttributes: [NSAttributedString.Key : Any] = [
@@ -50,10 +51,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .center
     }
-    #warning("implement the save method for editing mode")
+    
     override func viewWillAppear(_ animated: Bool) {
         if memeToEdit != nil {
             navbar.isHidden = true
+            tabBarController?.tabBar.isHidden = true
             pickedImageView.image = memeToEdit?.originalImage
             topTextField.text = memeToEdit?.topText
             bottomTextField.text = memeToEdit?.bottomText
@@ -108,13 +110,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         refreshButton.isEnabled = status
     }
     
+    //MARK: Save Button Functions to save the edited image.
     func setSaveButton() {
-        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveEditedImage))
-        navigationController?.navigationItem.rightBarButtonItem = saveButton
+        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveEditedImage))
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     @objc func saveEditedImage() {
-        
+        memeToEdit = Meme(topText: (topTextField.text)!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: generateMemedImage())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes[itemToEdit!] = memeToEdit!
     }
     
     // MARK: Image Picking Methods

@@ -12,15 +12,23 @@ class MemeDetailViewController: UIViewController {
     
     //MARK: Properties
     var meme: Meme!
+    var itemToEdit: Int!
     
     //MARK: Outlets
     @IBOutlet weak var memedImageView: UIImageView!
     
     override func viewDidLoad() {
-        tabBarController?.tabBar.isHidden = true
         // MARK: Right BarButtonItem initilization
         setRightBarButton()
         memedImageView.image = meme.memedImage
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
     func setRightBarButton() {
@@ -31,6 +39,7 @@ class MemeDetailViewController: UIViewController {
     @objc func editPressed() {
         let memeEditorVC = storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         memeEditorVC.memeToEdit = meme
+        memeEditorVC.itemToEdit = itemToEdit
         navigationController?.pushViewController(memeEditorVC, animated: true)
     }
     
