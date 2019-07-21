@@ -21,7 +21,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: Lifetime Methods
     override func viewDidLoad() {
-        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
+        layout.itemSize = CGSize(width: (view.frame.width/3)-1, height: (view.frame.width/3)-1)
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 2
+        collectionView!.collectionViewLayout = layout
     }
     
     override func viewWillAppear(_ animated: Bool) {
