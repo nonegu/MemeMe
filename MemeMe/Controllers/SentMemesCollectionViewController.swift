@@ -18,6 +18,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         NSAttributedString.Key.strokeColor : UIColor.black,
         NSAttributedString.Key.strokeWidth : -3.0
     ]
+    let kCollectionViewCellID = "collectionViewCell"
     
     // MARK: Lifetime Methods
     override func viewDidLoad() {
@@ -40,7 +41,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! MemeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCollectionViewCellID, for: indexPath) as! MemeCollectionViewCell
         cell.memeImageView.image = appDelegate.memes[indexPath.row].originalImage
         let topText = appDelegate.memes[indexPath.row].topText
         let attributedTopText = NSAttributedString(string: topText, attributes: memeTextAttributes)

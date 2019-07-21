@@ -18,6 +18,7 @@ class SentMemesTableViewController: UITableViewController  {
         NSAttributedString.Key.strokeColor : UIColor.black,
         NSAttributedString.Key.strokeWidth : -3.0
     ]
+    let kTableViewCellID = "tableViewCell"
     
     // MARK: Lifetime Methods
     override func viewDidLoad() {
@@ -36,7 +37,7 @@ class SentMemesTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! MemeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: kTableViewCellID, for: indexPath) as! MemeTableViewCell
         cell.memeImageView.image = appDelegate.memes[indexPath.row].originalImage
         let text = "\(appDelegate.memes[indexPath.row].topText)...\(appDelegate.memes[indexPath.row].bottomText)"
         cell.memeText.text = text
