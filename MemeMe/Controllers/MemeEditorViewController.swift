@@ -57,6 +57,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             pickedImageView.image = memeToEdit?.originalImage
             topTextField.text = memeToEdit?.topText
             bottomTextField.text = memeToEdit?.bottomText
+            setSaveButton()
         }
         subscribeToKeyboardNotifications()
     }
@@ -105,6 +106,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func navBarButtonsEnabled(_ status: Bool) {
         shareButton.isEnabled = status
         refreshButton.isEnabled = status
+    }
+    
+    func setSaveButton() {
+        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveEditedImage))
+        navigationController?.navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    @objc func saveEditedImage() {
+        
     }
     
     // MARK: Image Picking Methods
