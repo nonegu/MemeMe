@@ -56,6 +56,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             navbar.isHidden = true
             tabBarController?.tabBar.isHidden = true
             pickedImageView.image = memeToEdit.originalImage
+            setGestureRecognizers(imageView: pickedImageView)
             topTextField.text = memeToEdit.topText
             bottomTextField.text = memeToEdit.bottomText
             setSaveButton()
@@ -169,7 +170,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         dismiss(animated: true) {
             self.navBarButtonsEnabled(true)
-            self.pickedImageView.isUserInteractionEnabled = true
             self.setGestureRecognizers(imageView: self.pickedImageView)
         }
     }
