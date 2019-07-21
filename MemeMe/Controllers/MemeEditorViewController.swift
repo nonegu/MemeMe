@@ -195,8 +195,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func hideNavigationControllers(_ status: Bool) {
-        toolbar.isHidden = status
-        navbar.isHidden = status
+        if memeToEdit != nil {
+            toolbar.isHidden = status
+            navigationController?.navigationBar.isHidden = status
+        } else {
+            toolbar.isHidden = status
+            navbar.isHidden = status
+        }
     }
     
     // MARK: TextField Methods
