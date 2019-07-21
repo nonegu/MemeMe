@@ -166,10 +166,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true) {
             self.navBarButtonsEnabled(true)
             self.pickedImageView.isUserInteractionEnabled = true
-            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(sender:)))
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(sender:)))
-            self.pickedImageView.addGestureRecognizer(pinchGesture)
-            self.pickedImageView.addGestureRecognizer(panGesture)
+            self.setGestureRecognizers(imageView: self.pickedImageView)
         }
     }
     

@@ -24,4 +24,12 @@ extension MemeEditorViewController {
         }
         sender.setTranslation(CGPoint.zero, in: sender.view)
     }
+    
+    // MARK: Add Gestures to imageView
+    func setGestureRecognizers(imageView: UIImageView) {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchGesture(sender:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(sender:)))
+        imageView.addGestureRecognizer(pinchGesture)
+        imageView.addGestureRecognizer(panGesture)
+    }
 }
