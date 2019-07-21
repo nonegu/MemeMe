@@ -16,6 +16,7 @@ extension MemeEditorViewController {
         sender.scale = 1.0
     }
     
+    // MARK: Gesture method to move image
     @objc func panGesture(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: sender.view)
         if let view = sender.view {

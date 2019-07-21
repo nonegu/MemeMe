@@ -10,6 +10,7 @@ import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    // MARK: Outlets
     @IBOutlet weak var pickedImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
@@ -31,12 +32,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSAttributedString.Key.strokeWidth : -3.0
     ]
     
+    // MARK: to hide the status bar, info.plist also needs to be updated
     override var prefersStatusBarHidden: Bool {
         get {
             return true
         }
     }
     
+    // MARK: Lifetime Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,12 +47,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setTextFieldAttributes(topTextField)
         setTextFieldAttributes(bottomTextField)
-    }
-    
-    func setTextFieldAttributes(_ textField: UITextField) {
-        textField.delegate = self
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +64,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeToKeyboardNotifications()
+    }
+    
+    func setTextFieldAttributes(_ textField: UITextField) {
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
     }
     
     // MARK: Create UIActivityController
@@ -95,6 +98,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    // MARK: NavBar Buttons' Methods
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -176,7 +180,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: create a meme object and save it in the global array
     func save(image: UIImage) {
         
-        // Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: image)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
