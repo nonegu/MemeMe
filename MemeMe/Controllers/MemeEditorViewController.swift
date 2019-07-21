@@ -20,7 +20,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
     
-    var memeToEdit: Meme?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var itemToEdit: Int?
     
     // MARK: Properties
@@ -53,12 +53,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if memeToEdit != nil {
+        if itemToEdit != nil {
+            let memeToEdit = appDelegate.memes[itemToEdit!]
             navbar.isHidden = true
             tabBarController?.tabBar.isHidden = true
-            pickedImageView.image = memeToEdit?.originalImage
-            topTextField.text = memeToEdit?.topText
-            bottomTextField.text = memeToEdit?.bottomText
+            pickedImageView.image = memeToEdit.originalImage
+            topTextField.text = memeToEdit.topText
+            bottomTextField.text = memeToEdit.bottomText
             setSaveButton()
         }
         subscribeToKeyboardNotifications()
@@ -117,9 +118,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @objc func saveEditedImage() {
-        memeToEdit = Meme(topText: (topTextField.text)!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: generateMemedImage())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.memes[itemToEdit!] = memeToEdit!
+        let editedMeme = Meme(topText: (topTextField.text)!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: generateMemedImage())
+        appDelegate.memes[itemToEdit!] = editedMeme
     }
     
     // MARK: Image Picking Methods
@@ -195,7 +195,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func hideNavigationControllers(_ status: Bool) {
-        if memeToEdit != nil {
+        if itemToEdit != nil {
             toolbar.isHidden = status
             navigationController?.navigationBar.isHidden = status
         } else {
