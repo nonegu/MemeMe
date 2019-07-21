@@ -29,7 +29,9 @@ class MemeDetailViewController: UIViewController {
     }
     
     @objc func editPressed() {
-        
+        let memeEditorVC = storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        memeEditorVC.memeToEdit = meme
+        navigationController?.pushViewController(memeEditorVC, animated: true)
     }
     
 }

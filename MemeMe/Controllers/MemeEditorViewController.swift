@@ -20,6 +20,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
     
+    var memeToEdit: Meme?
+    
     // MARK: Properties
     let memeTextAttributes: [NSAttributedString.Key : Any] = [
         NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
@@ -48,8 +50,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .center
     }
-    
+    #warning("implement the save method for editing mode")
     override func viewWillAppear(_ animated: Bool) {
+        if memeToEdit != nil {
+            navbar.isHidden = true
+            pickedImageView.image = memeToEdit?.originalImage
+            topTextField.text = memeToEdit?.topText
+            bottomTextField.text = memeToEdit?.bottomText
+        }
         subscribeToKeyboardNotifications()
     }
     
