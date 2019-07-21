@@ -14,11 +14,11 @@ class MemeDetailViewController: UIViewController {
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     var itemToShow: Int!
     
-    //MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var memedImageView: UIImageView!
     
+    // MARK: Lifetime Methods
     override func viewDidLoad() {
-        // MARK: Right BarButtonItem initilization
         setRightBarButton()
     }
     
@@ -31,6 +31,7 @@ class MemeDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: Right BarButtonItem initilization
     func setRightBarButton() {
         let editBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editPressed))
         navigationItem.rightBarButtonItem = editBarButtonItem

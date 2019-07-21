@@ -19,13 +19,12 @@ class SentMemesTableViewController: UITableViewController  {
         NSAttributedString.Key.strokeWidth : -3.0
     ]
     
-    #warning("solve the separator view appearance")
+    // MARK: Lifetime Methods
     override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(tabBarController?.tabBar.isHidden)
         tableView.reloadData()
     }
     
@@ -58,6 +57,7 @@ class SentMemesTableViewController: UITableViewController  {
         return true
     }
     
+    // MARK: TableViewCell Editing Style
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             appDelegate.memes.remove(at: indexPath.row)
