@@ -120,6 +120,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @objc func saveEditedImage() {
         let editedMeme = Meme(topText: (topTextField.text)!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: generateMemedImage())
         appDelegate.memes[itemToEdit!] = editedMeme
+        // MARK: Since the code on 122 never fails, following alarm controller would not require a completion block.
+        let ac = UIAlertController(title: "Done!", message: "Your meme has been succesfully edited.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(ac, animated: true)
     }
     
     // MARK: Image Picking Methods
