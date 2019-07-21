@@ -13,6 +13,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: Outlets
     @IBOutlet weak var pickedImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -134,25 +135,28 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: Image Picking Methods
     @IBAction func pickAnImageFromAlbum(_ sender: UIBarButtonItem) {
         
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        // apple suggests that imagepickers that uses library, should be presented as popovers
-        imagePicker.modalPresentationStyle = .popover
-        // defining the popover
-        let ppc = imagePicker.popoverPresentationController
-        ppc?.barButtonItem = sender
-        ppc?.permittedArrowDirections = .any
-        
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImage(source: .photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
         
+        pickAnImage(source: .camera)
+    }
+    
+    func pickAnImage(source: UIImagePickerController.SourceType) {
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = source
+        if source == .photoLibrary {
+            // apple suggests that imagepickers that uses library, should be presented as popovers
+            imagePicker.modalPresentationStyle = .popover
+            // defining the popover
+            let ppc = imagePicker.popoverPresentationController
+            ppc?.barButtonItem = albumButton
+            ppc?.permittedArrowDirections = .any
+        }
         present(imagePicker, animated: true, completion: nil)
     }
     
