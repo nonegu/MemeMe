@@ -111,7 +111,7 @@
         <scene sceneID="W8N-MD-tVe">
             <objects>
                 <navigationController id="H9a-bu-QyZ" userLabel="SentMemesTableView" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="c12-v0-fvz"/>
+                    <tabBarItem key="tabBarItem" title="" image="table_30x30" id="c12-v0-fvz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uL7-gC-G70">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -128,7 +128,7 @@
         <scene sceneID="YRm-fW-olx">
             <objects>
                 <navigationController id="AjU-xK-U0w" userLabel="SentMemesCollectionView" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="xT0-gW-uRW"/>
+                    <tabBarItem key="tabBarItem" title="" image="collection_30x30" id="xT0-gW-uRW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dRv-QT-cG3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -355,6 +355,10 @@
             <point key="canvasLocation" x="1799" y="-236"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection_30x30" width="30" height="30"/>
+        <image name="table_30x30" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i31-Eh-Goc"/>
     </inferredMetricsTieBreakers>
