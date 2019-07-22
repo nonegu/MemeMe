@@ -262,6 +262,10 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-u6-bgd" userLabel="NavBar Background Image">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <color key="backgroundColor" red="0.97636479139328003" green="0.97653168439865112" blue="0.97635418176651001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fub-Mc-CYy">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
@@ -292,12 +296,16 @@
                             <constraint firstItem="2fM-iv-odV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="0ob-3H-rFq"/>
                             <constraint firstItem="Ew4-jF-Ca1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8VC-tW-pmf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2fM-iv-odV" secondAttribute="trailing" constant="16" id="AGs-fo-peU"/>
+                            <constraint firstItem="Obc-u6-bgd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="B2b-As-92S"/>
                             <constraint firstItem="Ew4-jF-Ca1" firstAttribute="top" secondItem="xqX-fK-J0C" secondAttribute="bottom" id="MDu-Qw-FcS"/>
                             <constraint firstItem="2fM-iv-odV" firstAttribute="top" secondItem="xqX-fK-J0C" secondAttribute="top" constant="8" id="N6T-K2-ga7"/>
                             <constraint firstItem="xqX-fK-J0C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="Syg-Kg-DvG"/>
                             <constraint firstItem="fub-Mc-CYy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Und-H8-NwM"/>
+                            <constraint firstItem="Obc-u6-bgd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZSg-LN-Ged"/>
+                            <constraint firstItem="fub-Mc-CYy" firstAttribute="bottom" secondItem="Obc-u6-bgd" secondAttribute="bottom" id="bjA-5Y-mma"/>
                             <constraint firstItem="Ew4-jF-Ca1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cYp-q7-yh7"/>
                             <constraint firstItem="xqX-fK-J0C" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="d8v-mp-BRu"/>
+                            <constraint firstItem="Obc-u6-bgd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ekk-Pf-RR7"/>
                             <constraint firstItem="fub-Mc-CYy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="j8b-EK-sXz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hqj-QK-iWr" secondAttribute="trailing" constant="16" id="jEF-td-b0z"/>
                             <constraint firstItem="fub-Mc-CYy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qol-zn-hgB"/>
@@ -313,6 +321,7 @@
                         <outlet property="bottomTextField" destination="hqj-QK-iWr" id="5Dc-MH-IKR"/>
                         <outlet property="cameraButton" destination="cUq-SW-D6I" id="Ikd-lX-dZ4"/>
                         <outlet property="cancelButton" destination="bqP-Cg-PtN" id="63V-08-DqH"/>
+                        <outlet property="navBarBackgroundImageView" destination="Obc-u6-bgd" id="S49-Na-TLz"/>
                         <outlet property="navbar" destination="fub-Mc-CYy" id="jUj-7p-MiE"/>
                         <outlet property="pickedImageView" destination="xqX-fK-J0C" id="mpb-7t-mvI"/>
                         <outlet property="refreshButton" destination="IMq-Eb-doh" id="UDV-52-na4"/>
@@ -323,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966" y="-236"/>
+            <point key="canvasLocation" x="965.21739130434787" y="-236.41304347826087"/>
         </scene>
         <!--Meme Detail View Controller-->
         <scene sceneID="Pr6-mK-kNe">

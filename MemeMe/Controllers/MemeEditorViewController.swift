@@ -21,6 +21,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var navBarBackgroundImageView: UIImageView!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var itemToEdit: Int?
@@ -54,6 +55,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if itemToEdit != nil {
             let memeToEdit = appDelegate.memes[itemToEdit!]
             navbar.isHidden = true
+            navBarBackgroundImageView.isHidden = true
             tabBarController?.tabBar.isHidden = true
             pickedImageView.image = memeToEdit.originalImage
             pickedImageView.contentMode = .scaleAspectFit
@@ -206,6 +208,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         } else {
             toolbar.isHidden = status
             navbar.isHidden = status
+            navBarBackgroundImageView.isHidden = status
         }
     }
     
