@@ -12,20 +12,14 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let memeTextAttributes: [NSAttributedString.Key : Any] = [
-        NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 12)!,
-        NSAttributedString.Key.foregroundColor : UIColor.white,
-        NSAttributedString.Key.strokeColor : UIColor.black,
-        NSAttributedString.Key.strokeWidth : -3.0
-    ]
     let kCollectionViewCellID = "collectionViewCell"
     
     // MARK: Lifetime Methods
     override func viewDidLoad() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-        layout.itemSize = CGSize(width: (view.frame.width/3)-1, height: (view.frame.width/3)-1)
-        layout.minimumInteritemSpacing = 1
+        layout.itemSize = CGSize(width: (view.frame.width/3)-2, height: (view.frame.width/3)-2)
+        layout.minimumInteritemSpacing = 0.5
         layout.minimumLineSpacing = 2
         collectionView!.collectionViewLayout = layout
     }
