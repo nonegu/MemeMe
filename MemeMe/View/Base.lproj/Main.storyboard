@@ -278,7 +278,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Cancel" id="bqP-Cg-PtN">
                                                 <connections>
-                                                    <action selector="cancelPressed:" destination="BYZ-38-t0r" id="DKI-5N-ZYC"/>
+                                                    <action selector="cancelOrDonePressed:" destination="BYZ-38-t0r" id="DKI-5N-ZYC"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="refresh" id="IMq-Eb-doh">
@@ -369,6 +369,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i31-Eh-Goc"/>
+        <segue reference="OHR-Wn-1O2"/>
     </inferredMetricsTieBreakers>
 </document>

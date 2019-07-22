@@ -23,10 +23,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var navBarBackgroundImageView: UIImageView!
     
+    // MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var itemToEdit: Int?
     
-    // MARK: Properties
     let memeTextAttributes: [NSAttributedString.Key : Any] = [
         NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -54,15 +54,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewWillAppear(_ animated: Bool) {
         if itemToEdit != nil {
             let memeToEdit = appDelegate.memes[itemToEdit!]
-            navbar.isHidden = true
-            navBarBackgroundImageView.isHidden = true
             tabBarController?.tabBar.isHidden = true
+            navigationController?.navigationBar.isHidden = true
+            cancelButton.title = "Done"
             pickedImageView.image = memeToEdit.originalImage
             pickedImageView.contentMode = .scaleAspectFit
             setGestureRecognizers(imageView: pickedImageView)
             topTextField.text = memeToEdit.topText
             bottomTextField.text = memeToEdit.bottomText
-            setSaveButton()
         }
         subscribeToKeyboardNotifications()
     }
@@ -104,8 +103,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // MARK: NavBar Buttons' Methods
-    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    // MARK: The left BarButtonItem will rename to "Done" in editing mode.
+    @IBAction func cancelOrDonePressed(_ sender: UIBarButtonItem) {
+        if itemToEdit != nil {
+            saveEditedImage()
+            navigationController?.navigationBar.isHidden = false
+            tabBarController?.tabBar.isHidden = false
+            navigationController?.popToRootViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func refreshPressed(_ sender: Any) {
@@ -121,19 +128,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         refreshButton.isEnabled = status
     }
     
-    //MARK: Save Button Functions to save the edited image.
-    func setSaveButton() {
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveEditedImage))
-        navigationItem.rightBarButtonItem = saveButton
-    }
-    
-    @objc func saveEditedImage() {
+    //MARK: Save Function to save the edited image.
+    func saveEditedImage() {
+        
         let editedMeme = Meme(topText: (topTextField.text)!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: generateMemedImage())
         appDelegate.memes[itemToEdit!] = editedMeme
-        // MARK: Since the code on 122 never fails, following alarm controller would not require a completion block.
-        let ac = UIAlertController(title: "Done!", message: "Your meme has been succesfully edited.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(ac, animated: true)
     }
     
     // MARK: Image Picking Methods
@@ -202,14 +201,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func hideNavigationControllers(_ status: Bool) {
-        if itemToEdit != nil {
-            toolbar.isHidden = status
-            navigationController?.navigationBar.isHidden = status
-        } else {
+        
             toolbar.isHidden = status
             navbar.isHidden = status
             navBarBackgroundImageView.isHidden = status
-        }
     }
     
     // MARK: TextField Methods
