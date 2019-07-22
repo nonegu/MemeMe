@@ -56,6 +56,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             navbar.isHidden = true
             tabBarController?.tabBar.isHidden = true
             pickedImageView.image = memeToEdit.originalImage
+            pickedImageView.contentMode = .scaleAspectFit
             setGestureRecognizers(imageView: pickedImageView)
             topTextField.text = memeToEdit.topText
             bottomTextField.text = memeToEdit.bottomText
@@ -191,10 +192,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         hideNavigationControllers(true)
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        let memedImage = view.asImage()
         
         hideNavigationControllers(false)
         
@@ -233,3 +231,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
 }
 
+extension UIView {
+    
+    // Using a function since `var image` might conflict with an existing variable
+    // (like on `UIImageView`)
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
