@@ -52,16 +52,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if itemToEdit != nil {
-            let memeToEdit = appDelegate.memes[itemToEdit!]
+        if let itemToEdit = itemToEdit {
             tabBarController?.tabBar.isHidden = true
             navigationController?.navigationBar.isHidden = true
             cancelButton.title = "Done"
-            pickedImageView.image = memeToEdit.originalImage
-            pickedImageView.contentMode = .scaleAspectFit
+            setUpItemToEdit(itemToEdit)
             setGestureRecognizers(imageView: pickedImageView)
-            topTextField.text = memeToEdit.topText
-            bottomTextField.text = memeToEdit.bottomText
         }
         subscribeToKeyboardNotifications()
     }
@@ -74,6 +70,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .center
+    }
+    
+    // MARK: Setting Up the Meme Editor for Editing
+    func setUpItemToEdit(_ itemToEdit: Int) {
+        let memeToEdit = appDelegate.memes[itemToEdit]
+        pickedImageView.image = memeToEdit.originalImage
+        pickedImageView.contentMode = .scaleAspectFit
+        topTextField.text = memeToEdit.topText
+        bottomTextField.text = memeToEdit.bottomText
     }
     
     // MARK: Create UIActivityController
@@ -116,10 +121,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func refreshPressed(_ sender: Any) {
-        pickedImageView.image = nil
-        pickedImageView.backgroundColor = UIColor.lightGray
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+        if let itemToEdit = itemToEdit {
+            setUpItemToEdit(itemToEdit)
+        } else {
+            pickedImageView.image = nil
+            pickedImageView.backgroundColor = UIColor.lightGray
+            topTextField.text = "TOP"
+            bottomTextField.text = "BOTTOM"
+        }
         navBarButtonsEnabled(false)
     }
     
