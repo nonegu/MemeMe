@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var pickedImageView: UIImageView!
@@ -22,6 +22,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var navBarBackgroundImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -49,6 +50,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setTextFieldAttributes(topTextField)
         setTextFieldAttributes(bottomTextField)
+        self.scrollView.minimumZoomScale = 0.2
+        self.scrollView.maximumZoomScale = 5.0
+        self.scrollView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +61,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             navigationController?.navigationBar.isHidden = true
             cancelButton.title = "Done"
             setUpItemToEdit(itemToEdit)
-            setGestureRecognizers(imageView: pickedImageView)
         }
         subscribeToKeyboardNotifications()
     }
@@ -70,6 +73,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .center
+    }
+    
+    // MARK: ScrollView Zoom & Pan Functionality
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.pickedImageView
     }
     
     // MARK: Setting Up the Meme Editor for Editing
@@ -175,7 +183,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         dismiss(animated: true) {
             self.navBarButtonsEnabled(true)
-            self.setGestureRecognizers(imageView: self.pickedImageView)
         }
     }
     
@@ -196,7 +203,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         hideNavigationControllers(true)
         
         // Render view to an image
-        let memedImage = view.asImage()
+        let memedImage = view.asImage(frame: scrollView.frame)
         
         hideNavigationControllers(false)
         
@@ -236,8 +243,8 @@ extension UIView {
     
     // Using a function since `var image` might conflict with an existing variable
     // (like on `UIImageView`)
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+    func asImage(frame: CGRect) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: frame)
         return renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
         }
