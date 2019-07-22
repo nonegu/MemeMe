@@ -146,37 +146,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="116" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPy-vP-Ogh">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPy-vP-Ogh">
                                             <rect key="frame" x="0.0" y="0.0" width="116" height="112"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meme Top Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7Y-vW-zhx">
-                                            <rect key="frame" x="-0.6666666666666643" y="2" width="117.33333333333331" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meme Bottom Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hm9-ke-Vwb">
-                                            <rect key="frame" x="-14.333333333333336" y="89" width="144.66666666666666" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="PPy-vP-Ogh" secondAttribute="bottom" id="HfA-v0-Iuc"/>
-                                    <constraint firstItem="X7Y-vW-zhx" firstAttribute="top" secondItem="PPy-vP-Ogh" secondAttribute="top" constant="2" id="M5X-oI-V6B"/>
                                     <constraint firstAttribute="trailing" secondItem="PPy-vP-Ogh" secondAttribute="trailing" id="bFf-P0-aLd"/>
-                                    <constraint firstItem="X7Y-vW-zhx" firstAttribute="centerX" secondItem="PPy-vP-Ogh" secondAttribute="centerX" id="hFg-IH-UzK"/>
                                     <constraint firstItem="PPy-vP-Ogh" firstAttribute="top" secondItem="SI3-82-cfh" secondAttribute="top" id="rty-Ad-Rw4"/>
-                                    <constraint firstItem="PPy-vP-Ogh" firstAttribute="bottom" secondItem="Hm9-ke-Vwb" secondAttribute="bottom" constant="2" id="siY-Wf-edI"/>
                                     <constraint firstItem="PPy-vP-Ogh" firstAttribute="leading" secondItem="SI3-82-cfh" secondAttribute="leading" id="xiB-v0-58f"/>
-                                    <constraint firstItem="Hm9-ke-Vwb" firstAttribute="centerX" secondItem="PPy-vP-Ogh" secondAttribute="centerX" id="xoR-cb-NZ2"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="memeBottomText" destination="Hm9-ke-Vwb" id="BPm-6y-ZuY"/>
                                     <outlet property="memeImageView" destination="PPy-vP-Ogh" id="cqG-MI-3YI"/>
-                                    <outlet property="memeTopText" destination="X7Y-vW-zhx" id="qqZ-ie-3S8"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -366,6 +348,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i31-Eh-Goc"/>
+        <segue reference="OHR-Wn-1O2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -42,13 +42,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCollectionViewCellID, for: indexPath) as! MemeCollectionViewCell
-        cell.memeImageView.image = appDelegate.memes[indexPath.row].originalImage
-        let topText = appDelegate.memes[indexPath.row].topText
-        let attributedTopText = NSAttributedString(string: topText, attributes: memeTextAttributes)
-        cell.memeTopText.attributedText = attributedTopText
-        let bottomText = appDelegate.memes[indexPath.row].bottomText
-        let attributedBottomText = NSAttributedString(string: bottomText, attributes: memeTextAttributes)
-        cell.memeBottomText.attributedText = attributedBottomText
+        cell.memeImageView.image = appDelegate.memes[indexPath.row].memedImage
         return cell
     }
     

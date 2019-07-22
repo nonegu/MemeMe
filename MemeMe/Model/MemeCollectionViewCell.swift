@@ -11,8 +11,6 @@ import UIKit
 class MemeCollectionViewCell: UICollectionViewCell {
     
     // MARK: Outlets
-    @IBOutlet weak var memeTopText: UILabel!
-    @IBOutlet weak var memeBottomText: UILabel!
     @IBOutlet weak var memeImageView: UIImageView!
     
 }
