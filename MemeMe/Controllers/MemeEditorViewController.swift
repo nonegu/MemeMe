@@ -94,12 +94,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityController.completionWithItemsHandler = { (activity, success, items, error) in
             if success && error == nil {
                 self.save(image: memedImage)
-                if activity == .saveToCameraRoll {
-                    // presenting an alert controller if the save is selected and successfull
-                    let ac = UIAlertController(title: "Saved!", message: "Your meme has been saved to your photos.", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(ac, animated: true)
-                }
                 self.dismiss(animated: true, completion: nil)
             } else if error != nil {
                 print(error!.localizedDescription)
