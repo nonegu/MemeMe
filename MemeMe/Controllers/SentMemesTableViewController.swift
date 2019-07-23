@@ -25,7 +25,7 @@ class SentMemesTableViewController: UITableViewController  {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     

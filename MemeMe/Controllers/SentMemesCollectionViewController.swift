@@ -24,7 +24,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         collectionView.reloadData()
     }
